@@ -1,0 +1,11 @@
+packages:
+  - apps/*
+  - packages/*
+overrides:
+  drizzle-orm: 0.45.2
+  node-releases: 2.0.65
+  "@types/react": 19.3.2
+  "@types/react-dom": 19.3.0
+allowBuilds:
+  esbuild: true
+  sharp: true

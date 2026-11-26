@@ -1,0 +1,74 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      [
+        { uses: actions/checkout@v4 },
+        { uses: pnpm/action-setup@v4, with: { version: 12.16.1 } },
+        { uses: actions/setup-node@v4, with: { node-version: 24, cache: pnpm } },
+        { run: pnpm install --frozen-lockfile },
+        { run: pnpm lint },
+      ]
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      [
+        { uses: actions/checkout@v4 },
+        { uses: pnpm/action-setup@v4, with: { version: 12.16.1 } },
+        { uses: actions/setup-node@v4, with: { node-version: 24, cache: pnpm } },
+        { run: pnpm install --frozen-lockfile },
+        { run: pnpm format:check },
+      ]
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      [
+        { uses: actions/checkout@v4 },
+        { uses: pnpm/action-setup@v4, with: { version: 12.16.1 } },
+        { uses: actions/setup-node@v4, with: { node-version: 24, cache: pnpm } },
+        { run: pnpm install --frozen-lockfile },
+        { run: pnpm typecheck },
+      ]
+  expo-doctor:
+    runs-on: ubuntu-latest
+    steps:
+      [
+        { uses: actions/checkout@v4 },
+        { uses: pnpm/action-setup@v4, with: { version: 12.16.1 } },
+        { uses: actions/setup-node@v4, with: { node-version: 24, cache: pnpm } },
+        { run: pnpm install --frozen-lockfile },
+        { run: pnpm check:expo },
+      ]
+  web-build:
+    runs-on: ubuntu-latest
+    env:
+      {
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test,
+        BETTER_AUTH_SECRET: CI_BUILD_ONLY_NOT_FOR_PRODUCTION_0123456789,
+        BETTER_AUTH_URL: http://localhost:3000,
+      }
+    steps:
+      [
+        { uses: actions/checkout@v4 },
+        { uses: pnpm/action-setup@v4, with: { version: 12.16.1 } },
+        { uses: actions/setup-node@v4, with: { node-version: 24, cache: pnpm } },
+        { run: pnpm install --frozen-lockfile },
+        { run: pnpm --filter @deessejs/web build },
+      ]
+  mobile-export:
+    runs-on: ubuntu-latest
+    steps:
+      [
+        { uses: actions/checkout@v4 },
+        { uses: pnpm/action-setup@v4, with: { version: 12.16.1 } },
+        { uses: actions/setup-node@v4, with: { node-version: 24, cache: pnpm } },
+        { run: pnpm install --frozen-lockfile },
+        {
+          run: pnpm --filter @deessejs/mobile exec expo export --platform android --output-dir /tmp/mobile-export,
+        },
+      ]

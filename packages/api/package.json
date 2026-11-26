@@ -1,0 +1,19 @@
+{
+  "name": "@deessejs/api",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@deessejs/auth": "workspace:*",
+    "@deessejs/database": "workspace:*",
+    "@orpc/server": "^1.14.7",
+    "drizzle-orm": "0.45.2",
+    "hono": "^4.12.28",
+    "zod": "^3.25.0"
+  }
+}
