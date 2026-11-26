@@ -1,0 +1,30 @@
+{
+  "name": "@deessejs/web",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "oxlint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@deessejs/api": "workspace:*",
+    "@deessejs/auth": "workspace:*",
+    "@next/env": "^16.2.10",
+    "@orpc/client": "^1.14.7",
+    "@orpc/server": "^1.14.7",
+    "@tailwindcss/postcss": "^4.3.2",
+    "better-auth": "^1.6.23",
+    "lucide-react": "^1.23.0",
+    "next": "^16.2.10",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "tailwindcss": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "@types/react-dom": "19.3.0",
+    "typescript": "~5.9.3"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "expo-nextjs-template",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "oxlint --config .oxlintrc.json apps packages",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "typecheck": "turbo typecheck",
+    "check:expo": "pnpm --filter @deessejs/mobile exec expo-doctor",
+    "check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm check:expo",
+    "db:generate": "pnpm --filter @deessejs/database db:generate",
+    "db:migrate": "pnpm --filter @deessejs/database db:migrate",
+    "db:push": "pnpm --filter @deessejs/database db:push"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "@types/react": "19.3.2",
+    "oxfmt": "^0.80.0",
+    "oxlint": "^1.95.0",
+    "turbo": "^2.5.4",
+    "typescript": "~5.9.3"
+  },
+  "engines": {
+    "node": ">=22.13.0 <27",
+    "pnpm": ">=10 <13"
+  },
+  "packageManager": "pnpm@12.16.1"
+}

@@ -1,0 +1,11 @@
+{
+  "plugins": ["typescript", "react", "nextjs"],
+  "ignorePatterns": [
+    "**/.next/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/android/**",
+    "**/ios/**",
+    "apps/web/next-env.d.ts"
+  ]
+}
